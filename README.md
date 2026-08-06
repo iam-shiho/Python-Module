@@ -23,25 +23,43 @@ This project has been created as part of the 42 curriculum by swaragay.
 | ex1 | `: (型の名前)` | アノテーション。pythonは'動的型付け'で、明示的に型を宣言しなくていい。<br>そのため、代入された値を元に型が決まる。（型を宣言しないとmypy --strictに引っかかる）|
 | ex1 | `input()` | 入力待ちになり文字をキーボードから入力できる。返り値はstr(文字列型)。|
 | ex2 | `int(引数)` | int関数。文字列やfloat型、bool値(1,0)をintに変換させる。<br>float型は小数点以下は切り捨てられる。12.34 -> 12 <br>数字ではない文字や文字列のfloat（'1.42'）は'ValueError'になる。|
-| ex2 | `range((開始値), 終了値, ステップ)` | range関数。連続した数字の並びを作成する。開始値を指定しない場合は０から始まる。終了値は整数（０以下の数は含まない）で、生成される数列の終点を表します。ステップは増分値を指定できる。ex:range(3) -> 0, 1, 2  range(1,4) -> 1, 2, 3　range(2, 11, 2) -> 2, 4, 6, 8, 10|
-
+| ex6 | `range((開始値), 終了値, ステップ)` | range関数。連続した数字の並びを作成する。開始値を指定しない場合は０から始まる。終了値は整数（０以下の数は含まない）で、生成される数列の終点を表します。ステップは増分値を指定できる。ex:range(3) -> 0, 1, 2  range(1,4) -> 1, 2, 3　range(2, 11, 2) -> 2, 4, 6, 8, 10|
+| ex6 | `for n in nums` | for文。リスト、タプル、文字列などを１つずつ取り出してその値に処理を行っていく。今回は、作成したrangeを代入したnumsを１つずつnに代入し、printする。|
+| ex7 | `elif` | else ifと同じ。if文が三択以上の時に使用する。elifのあとに条件文が入る。|
 
 **学んだこと・つまずいた点**:
-[自由記述。エラーの原因や解決方法、気づいたことなど]
+
 
 ---
 
-### python01 — [モジュールのテーマ名を記入]
+### python01
 
 **扱った内容**: [例: 制御構文、ループ、条件分岐 など]
 
 | 演習 (ex) | 使用した関数/メソッド | 役割・使い方 |
 |---|---|---|
-| ex00 | `range()` | [説明を記入] |
-| ex01 | `while` / `for` | [説明を記入] |
+| ex0 | `capitalize()` | capitalize()メソッド。先頭の1文字目を大文字に、2文字目以降をすべて小文字に変換する。|
+| ex0 | `if __name__ == '__main__'` | 下記で説明。|
+| ex0 | `f''` | f-strings。最小限の構文で、式を直接埋め込める。ex: f'Age: {age} days' <- 関数ageがこの行を評価する際に計算され、出力される。|
+| ex1 | `round(丸める数値, 桁数)` | round()。桁数以下を四捨五入して数字をまとめる。ex: round(4.23, 1)-> 4 |
+| ex1 | `class (クラス名)` | 様々な処理をまとめた設計図のようなもの。initでデータに初期値を代入し、selfをつかうことでclassの中身にある関数はいつでもデータにアクセスでき使用することができる。|
+| ex1 | `__init__` | |
+| ex4 | `_変数名` | カプセル化（単一アンダースコア）。外からアクセスして代入はできてしまうが、内部で代入などの操作を制限していることを伝えるために明記している。今回は０以下の数字が入らないようにチェックしてから代入するようにしている。|
+| ex5 | `class 子:クラス名(親:クラス名)` | |
+| ex5 | `super()` | |
+| ex5 | `@staticmethod` | |
+| ex5 | `@classmethod` | |
 
-**学んだこと・つまずいた点**:
-[自由記述]
+
+**if __name__ == '__main__'とは**:
+まずPythonインタープリター<sup>※1</sup>は、モジュール<sup>※2</sup>を読み込むと__name__という変数を設定する。メインプログラム<sup>※3</sup>だった際は__name__が__main__に設定される。しかしインポート<sup>※4</sup>されている側のモジュールはファイル名に設定される。
+
+メインプログラムだった際にそのif文の中身が実行される（≒ main関数）また、インポートされた時(else)に実行内容を制限したりできる。
+
+<sub>※1 書いたコードを一行ずつ読み込んで実行するプログラムのこと</sub>
+<sub>※2 拡張子 .py が付くファイル(pythonファイル)</sub>
+<sub>※3 python3 (ファイル名)<- これがメインプログラム　</sub>
+<sub>※4 import (ファイル名)<- ヘッダーみたいな感じ。他のモジュールでつくった関数などを呼び出す際に使う。</sub>
 
 ---
 
@@ -203,6 +221,13 @@ mypy . --strict
 ## Resources
 
 * [Python基礎レビュー]: ([URL](https://www.freecodecamp.org/japanese/learn/python-v9/review-python-basics/review-python-basics)) `python00`
+* [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
+* [Python if __name__ == "__main__" の解説]: ([URL](https://www.freecodecamp.org/japanese/news/if-name-main-python-example/)) `__main__`
+* [Literal String Interpolation]: ([URL](https://peps.python.org/pep-0498/)) `f-strings`
+* [クラスはどのように機能し、オブジェクトとはどう違うのか？]: ([URL](https://www.freecodecamp.org/japanese/learn/python-v9/lecture-classes-and-objects/how-do-classes-work-and-how-do-they-differ-from-objects)) `class`
+* [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
+* [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
+* [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
 * [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
 
 ---
