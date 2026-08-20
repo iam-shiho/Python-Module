@@ -38,28 +38,30 @@ This project has been created as part of the 42 curriculum by swaragay.
 
 | 演習 (ex) | 使用した関数/メソッド | 役割・使い方 |
 |---|---|---|
+| ex0 | `#!/usr/bin/env （インタープリター名）` | シバン(shebang)どのpythonインタープリター<sup>※1</sup>で実行するのか指定する。python3がどこにインストールされているかは、環境によってバラバラなので、envコマンドで環境変数を見つける。|
 | ex0 | `capitalize()` | capitalize()メソッド。先頭の1文字目を大文字に、2文字目以降をすべて小文字に変換する。|
 | ex0 | `if __name__ == '__main__'` | 下記で説明。|
 | ex0 | `f''` | f-strings。最小限の構文で、式を直接埋め込める。ex: f'Age: {age} days' <- 関数ageがこの行を評価する際に計算され、出力される。|
 | ex1 | `round(丸める数値, 桁数)` | round()。桁数以下を四捨五入して数字をまとめる。ex: round(4.23, 1)-> 4 |
 | ex1 | `class (クラス名)` | 様々な処理をまとめた設計図のようなもの。initでデータに初期値を代入し、selfをつかうことでclassの中身にある関数はいつでもデータにアクセスでき使用することができる。|
 | ex1 | `__init__` | |
-| ex4 | `_変数名` | カプセル化（単一アンダースコア）。外からアクセスして代入はできてしまうが、内部で代入などの操作を制限していることを伝えるために明記している。今回は０以下の数字が入らないようにチェックしてから代入するようにしている。|
-| ex5 | `class 子:クラス名(親:クラス名)` | |
-| ex5 | `super()` | |
-| ex5 | `@staticmethod` | |
-| ex5 | `@classmethod` | |
-
-
-**if __name__ == '__main__'とは**:
-まずPythonインタープリター<sup>※1</sup>は、モジュール<sup>※2</sup>を読み込むと__name__という変数を設定する。メインプログラム<sup>※3</sup>だった際は__name__が__main__に設定される。しかしインポート<sup>※4</sup>されている側のモジュールはファイル名に設定される。
-
-メインプログラムだった際にそのif文の中身が実行される（≒ main関数）また、インポートされた時(else)に実行内容を制限したりできる。
+| ex4 | `_変数名` | カプセル化（単一アンダースコア）。外からアクセスして代入はできてしまうが、内部で代入などの操作を制限していることを伝えるために明記している。今回は０以下の数字が入らないようにチェックしてから代入するようにしている。selfをうけとらないので、インスタンス化<sup>※1</sup>せずとも呼び出せる|
+| ex5 | `class 子:クラス名(親:クラス名)` |  |
+| ex5 | `super()` |  |
+| ex6 | `@staticmethod` | スタティックメソッド。インスタンスメソッド<sup>※2</sup>とは違いクラスには属しているがselfもclsも受け取らないメソッド。selfをうけとらないので、インスタンス化<sup>※3</sup>せずとも呼び出せる|
+| ex6 | `@classmethod` | クラスメソッド。clsを引数に取り、cls内で定義された変数（initではない）や関数を使用することができる。selfをうけとらないので、インスタンス化せずとも呼び出せる|
 
 <sub>※1 書いたコードを一行ずつ読み込んで実行するプログラムのこと</sub>
-<sub>※2 拡張子 .py が付くファイル(pythonファイル)</sub>
-<sub>※3 python3 (ファイル名)<- これがメインプログラム　</sub>
-<sub>※4 import (ファイル名)<- ヘッダーみたいな感じ。他のモジュールでつくった関数などを呼び出す際に使う。</sub>
+<sub>※2 クラス内で定義されたメソッド。initを引数として使用したりする。</sub>
+<sub>※3 rose = plant() 変数に代入すること</sub>
+
+**if __name__ == '__main__'とは**:
+まずPythonインタープリターは、モジュール<sup>※1</sup>を読み込むと__name__という変数を設定する。メインプログラム<sup>※2</sup>だった際は__name__が__main__に設定される。しかしインポート<sup>※3</sup>されている側のモジュールはファイル名に設定される。
+
+メインプログラムだった際にそのif文の中身が実行される（≒ main関数）また、インポートされた時(else)に実行内容を制限したりできる。
+<sub>※1 拡張子 .py が付くファイル(pythonファイル)</sub>
+<sub>※2 python3 (ファイル名)<- これがメインプログラム　</sub>
+<sub>※3 import (ファイル名)<- ヘッダーみたいな感じ。他のモジュールでつくった関数などを呼び出す際に使う。</sub>
 
 ---
 
@@ -225,7 +227,7 @@ mypy . --strict
 * [Python if __name__ == "__main__" の解説]: ([URL](https://www.freecodecamp.org/japanese/news/if-name-main-python-example/)) `__main__`
 * [Literal String Interpolation]: ([URL](https://peps.python.org/pep-0498/)) `f-strings`
 * [クラスはどのように機能し、オブジェクトとはどう違うのか？]: ([URL](https://www.freecodecamp.org/japanese/learn/python-v9/lecture-classes-and-objects/how-do-classes-work-and-how-do-they-differ-from-objects)) `class`
-* [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
+* [クラスメソッドとスタティックメソッド]: ([URL](https://dev.fullstack-cat.com/archives/667)) `py01_ex6`
 * [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
 * [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
 * [Pythonの標準入力input()の個人的まとめ]: ([URL](https://qiita.com/naoya_ok/items/f33a6ab2ff77154a7121)) `input()関数`
