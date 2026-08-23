@@ -1,19 +1,20 @@
+#!/usr/bin/env python3
 import math
 
 def get_player_pos() -> tuple:
     while True:
         input_value = input("Enter new coordinates as floats in format 'x,y,z': ")
         tmp = list(input_value.split(","))
-        if len(tmp) != 3:
+        if len(tmp) != 3: #lenが使えない場合も対応する？？
             print("Invalid syntax")
             continue
+        res = []
         try:
-            x = float(tmp[0])
-            y = float(tmp[1])
-            z = float(tmp[2])
-            return (x, y, z)
+            for val in tmp:
+                res = res + [float(val)]
+            return (res[0], res[1], res[2])
         except ValueError as e:
-            print(f"Error on parameter : {e}") #エラーこれでいいの？
+            print(f"Error on parameter '{val}': {e}")
             continue
 
 def coordinate_system()-> None:
@@ -28,7 +29,7 @@ def coordinate_system()-> None:
     print()
     print("Get a second set of coordinates")
     pos2 = get_player_pos()
-    
+
     coordinates =  math.sqrt((pos2[0] - pos1[0])**2 + (pos2[1] - pos1[1])**2 + (pos2[2] - pos1[2])**2)
     print(f"Distance between the 2 sets of coordinates: {round(coordinates,4)}")
 
