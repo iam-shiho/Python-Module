@@ -5,7 +5,7 @@ def get_player_pos() -> tuple:
     while True:
         input_value = input("Enter new coordinates as floats in format 'x,y,z': ")
         tmp = list(input_value.split(","))
-        if len(tmp) != 3: #lenが使えない場合も対応する？？
+        if len(tmp) != 3:
             print("Invalid syntax")
             continue
         res = []
