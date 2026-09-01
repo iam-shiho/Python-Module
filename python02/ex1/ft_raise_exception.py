@@ -16,7 +16,7 @@ def test_temperature() -> None:
 
 def input_temperature(temp: str) -> int:
     print(f"Input data is '{temp}'")
-    hako =  int(temp)
+    hako = int(temp)
     if hako > 40:
         raise ValueError(f"{hako}°C is too hot for plants (max 40°C)")
     elif hako < 0:

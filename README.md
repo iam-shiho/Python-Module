@@ -51,9 +51,9 @@ This project has been created as part of the 42 curriculum by swaragay.
 | ex6 | `@staticmethod` | スタティックメソッド。インスタンスメソッド<sup>※2</sup>とは違いクラスには属しているがselfもclsも受け取らないメソッド。selfをうけとらないので、インスタンス化<sup>※3</sup>せずとも呼び出せる|
 | ex6 | `@classmethod` | クラスメソッド。clsを引数に取り、cls内で定義された変数（initではない）や関数を使用することができる。selfをうけとらないので、インスタンス化せずとも呼び出せる|
 
-<sub>※1 書いたコードを一行ずつ読み込んで実行するプログラムのこと</sub>
-<sub>※2 クラス内で定義されたメソッド。initを引数として使用したりする。</sub>
-<sub>※3 rose = plant() 変数に代入すること</sub>
+* <sub>※1 書いたコードを一行ずつ読み込んで実行するプログラムのこと</sub>
+* <sub>※2 クラス内で定義されたメソッド。initを引数として使用したりする。</sub>
+* <sub>※3 rose = plant() 変数に代入すること</sub>
 
 **if __name__ == '__main__'とは**:
 まずPythonインタープリターは、モジュール<sup>※1</sup>を読み込むと__name__という変数を設定する。メインプログラム<sup>※2</sup>だった際は__name__が__main__に設定される。しかしインポート<sup>※3</sup>されている側のモジュールはファイル名に設定される。

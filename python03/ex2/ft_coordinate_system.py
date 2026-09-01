@@ -25,7 +25,7 @@ def coordinate_system()-> None:
     print(f"Got a first tuple: {pos1}")
     print(f"It includes: X={pos1[0]}, Y={pos1[1]}, Z={pos1[2]}")
     coordinates =  math.sqrt((pos1[0])**2 + (pos1[1])**2 + (pos1[2])**2)
-    print(f"Distance between the 2 sets of coordinates: {round(coordinates,4)}")
+    print(f"Distance to center: {round(coordinates,4)}")
     print()
     print("Get a second set of coordinates")
     pos2 = get_player_pos()
@@ -33,5 +33,8 @@ def coordinate_system()-> None:
     coordinates =  math.sqrt((pos2[0] - pos1[0])**2 + (pos2[1] - pos1[1])**2 + (pos2[2] - pos1[2])**2)
     print(f"Distance between the 2 sets of coordinates: {round(coordinates,4)}")
 
-if __name__ == "__main__":
-    coordinate_system()
+if __name__ == '__main__':
+    try:
+        coordinate_system()
+    except Exception as e:
+        print(f"Error: {e}")

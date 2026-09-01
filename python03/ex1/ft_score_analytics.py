@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
-def print_score() ->None:
+
+def print_score() -> None:
     print("=== Player Score Analytics ===")
     program_name, *args = sys.argv
     res = []
@@ -24,5 +25,8 @@ def print_score() ->None:
     print(f"Score range: {max(res) - min(res)}")
     print()
 
-if __name__ == "__main__":
-    print_score()
+if __name__ == '__main__':
+    try:
+        print_score()
+    except Exception as e:
+        print(f"Error: {e}")

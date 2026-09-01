@@ -16,8 +16,7 @@ def test_temperature() -> None:
 
 def input_temperature(temp: str) -> int:
     print(f"Input data is '{temp}'")
-    int(temp)
-    return temp
+    return int(temp)
 
 
 if __name__ == "__main__":
