@@ -24,14 +24,15 @@ def import_dict() -> dict[str, int]:
     program_name, *args = sys.argv
     inventory: dict[str, int] = {}
     if not args:
-        raise None_value("No item provided. Usage: python3 ft_inventory_system.py <item_name>:<quantity> ...")
+        raise None_value("No item provided. Usage: python3 "
+                         "ft_inventory_system.py <item_name>:<quantity> ...")
     for arg in args:
         try:
             if ':' in arg:
                 key, value = arg.split(':')
             else:
                 raise Invalid_parameter(f"Error - invalid parameter '{arg}'")
-            if inventory.get(key) == None:
+            if not inventory.get(key):
                 inventory[key] = int(value)
             else:
                 raise Redundant_item(f"Redundant item '{key}' - discarding")
@@ -42,8 +43,9 @@ def import_dict() -> dict[str, int]:
         except Invalid_parameter as e:
             print(e)
     if not inventory:
-        raise None_value("No valid item provided. Usage: python3 ft_inventory_system.py <item_name>:<quantity> ...")
-    return(inventory)
+        raise None_value("No valid item provided. Usage: python3 "
+                         "ft_inventory_system.py <item_name>:<quantity> ...")
+    return inventory
 
 
 def print_dict(inventory: dict[str, int]) -> None:
@@ -54,11 +56,12 @@ def print_dict(inventory: dict[str, int]) -> None:
         sum_values = sum(values)
         print(f"Total quantity of the {len(values)} items: {sum_values}")
         for key, value in inventory.items():
-            print(f"Item {key} represents {round((value / sum_values) * 100,1)}%")
+            print(f"Item {key} represents "
+                  f"{round((value / sum_values) * 100,1)}%")
         max_key, max_value = max(inventory.items(), key=get_value)
         min_key, min_value = min(inventory.items(), key=get_value)
-        print(f"Item most abundant: {max_key} with quantity {max_value}") #最大値
-        print(f"Item least abundant: {min_key} with quantity {min_value}") #最小値
+        print(f"Item most abundant: {max_key} with quantity {max_value}")
+        print(f"Item least abundant: {min_key} with quantity {min_value}")
     except Exception as e:
         print(f"Error: {e}")
     finally:
@@ -77,17 +80,3 @@ if __name__ == '__main__':
         main()
     except Exception as e:
         print(f"Error: {e}")
-
-#引数を受取り、各変数に入れていく
-    #quanityはint ValueErrorで落とす
-    #書式が違うものはerror
-    #かぶりがある場合もerror文を出力する
-        #一回keyとvalueを各々リストに格納して重複がないかチェック？
-        #最初にkeyがあるか確認してから入れる？　<- こっちのほうがわかりやすい
-#指定されたものをプリントしていく
-    #dictのを取り出してリスト型にして、出力する
-    #総数を数える＋その割合を出力する
-    #一番多いものを出力
-    #一番少ないものを出力
-    #try except 文の後にfinallyを追加してマジックアイテムを追加する
-#raiseをmainで感知しているのはいいのか悩み
