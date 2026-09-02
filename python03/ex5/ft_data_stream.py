@@ -6,12 +6,13 @@ import random
 PLAYERS = ["alice", "bob", "charlie", "dylan"]
 ACTIONS = ["run", "eat", "sleep", "grab", "move", "climb", "swim", "release"]
 
+
 def gen_event() -> typing.Generator[tuple[str,str], None, None]:
     while True:
         yield (random.choice(PLAYERS), random.choice(ACTIONS))
 
 
-def consume_event(events: list) -> typing.Generator[tuple[str,str], None, list[tuple[str,str]]]:
+def consume_event(events: list[tuple[str,str]]) -> typing.Generator[tuple[str,str], None, None]:
     while events:
         event = random.choice(events)
         events.remove(event)
@@ -29,8 +30,8 @@ def main() -> None:
         ten_events.append(next(gen_obj))
     print(f"Built list of 10 events: {ten_events}")
     rem_event = consume_event(ten_events)
-    for i in range(10):
-        print(f"Got event from list: {next(rem_event)}")
+    for event_pair in rem_event:
+        print(f"Got event from list: {event}")
         print(f"Remains in list: {ten_events}")
 
 

@@ -100,11 +100,11 @@ This project has been created as part of the 42 curriculum by swaragay.
 
 | 演習 (ex) | 使用した関数/メソッド | 役割・使い方 |
 |---|---|---|
-| ex00 | 再帰関数 | [説明を記入] |
-| ex01 | `map()` / `filter()` | [説明を記入] |
+| ex00 | `open()` | [説明を記入] |
+| ex01 | `` | [説明を記入] |
 
 **学んだこと・つまずいた点**:
-[自由記述]
+catで表示できるもの
 
 ---
 

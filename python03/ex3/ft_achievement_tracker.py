@@ -2,14 +2,26 @@
 
 import random
 
-ACHIEVEMENTS = ['Crafting Genius', 'Strategist', 'World Savior', 'Speed Runner', 'Survivor',\
-                'Master Explorer', 'Treasure Hunter', 'Unstoppable', 'First Steps',\
-                'Collector Supreme','Untouchable', 'Sharp Mind', 'Boss Slayer']
+ACHIEVEMENTS = ['Crafting Genius',
+                'Strategist',
+                'World Savior',
+                'Speed Runner',
+                'Survivor',
+                'Master Explorer',
+                'Treasure Hunter',
+                'Unstoppable',
+                'First Steps',
+                'Collector Supreme',
+                'Untouchable',
+                'Sharp Mind',
+                'Boss Slayer'
+                ]
 
 PLAYERS = ['Alice', 'Bob', 'Charlie', 'Dylan']
 
+
 def gen_player_achievements() -> set[str]:
-    i = random.randint(5,9)
+    i = random.randint(5, 9)
     achieves = random.sample(ACHIEVEMENTS, i)
     return set(achieves)
 
@@ -20,7 +32,7 @@ def main() -> None:
     player_achieve = {}
     for name in PLAYERS:
         player_achieve[name] = gen_player_achievements()
-        print(f'Player {name}: {player_achieve.get(name)}')
+        print(f'Player {name}: {player_achieve[name]}')
 
     print()
     print(f"All distinct achievements: {ACHIEVEMENTS}")
@@ -32,17 +44,17 @@ def main() -> None:
 
     print()
     for name in PLAYERS:
-        other_sets = []
+        other_sets: list[set[str]] = []
         for other_name in PLAYERS:
             if not other_name == name:
-                other_sets = other_sets + [player_achieve.get(other_name)]
-        only = player_achieve.get(name).difference(*other_sets)
+                other_sets = other_sets + [player_achieve[other_name]]
+        only: set[str] = player_achieve[name].difference(*other_sets)
         print(f"Only {name} has: {only}")
 
     print()
     for name in PLAYERS:
         achieves = set(ACHIEVEMENTS)
-        missing = achieves.difference(player_achieve.get(name))
+        missing = achieves.difference(player_achieve[name])
         print(f"{name} is missing: {missing}")
 
 

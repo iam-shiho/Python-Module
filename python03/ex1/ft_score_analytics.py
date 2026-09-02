@@ -13,7 +13,8 @@ def print_score() -> None:
         except ValueError:
             print(f"Invalid parameter: {val}")
     if len(res) == 0:
-        print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+        print("No scores provided. Usage: python3 "
+              "ft_score_analytics.py <score1> <score2> ...")
         print()
         return
     print(f"Scores processed: {res}")
@@ -24,6 +25,7 @@ def print_score() -> None:
     print(f"Low score: {min(res)}")
     print(f"Score range: {max(res) - min(res)}")
     print()
+
 
 if __name__ == '__main__':
     try:
