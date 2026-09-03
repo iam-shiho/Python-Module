@@ -8,8 +8,7 @@ def read_file(file_name: str) -> typing.IO:
     return open(file_name, 'r')
 
 
-def main() -> None:
-    print("=== Cyber Archives Recovery ===")
+def cat_file() -> None:
     if len(sys.argv) < 2:
         raise None_value("Usage: ft_ancient_text.py <file>")
     file_name = sys.argv[1]
@@ -20,6 +19,7 @@ def main() -> None:
         print("---")
         print()
         print(contents)
+        print()
         print("---")
         r_file.close()
         print(f"File '{file_name}' closed.")
@@ -29,6 +29,11 @@ def main() -> None:
         print(f"Error opening file '{file_name}': {e}")
     except IsADirectoryError as e:
         print(f"Error opening file '{file_name}': {e}")
+
+
+def main() -> None:
+    print("=== Cyber Archives Recovery ===")
+    cat_file()
 
 
 if __name__ == "__main__":

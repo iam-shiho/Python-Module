@@ -3,6 +3,7 @@
 import sys
 import typing
 
+
 class None_value(Exception):
     pass
 
@@ -11,8 +12,7 @@ def read_file(file_name: str) -> typing.IO:
     return open(file_name, 'r')
 
 
-def main() -> None:
-    print("=== Cyber Archives Recovery ===")
+def cat_file() -> typing.IO:
     if len(sys.argv) < 2:
         raise None_value("Usage: ft_ancient_text.py <file>")
     file_name = sys.argv[1]
@@ -23,26 +23,49 @@ def main() -> None:
         print("---")
         print()
         print(contents)
+        print()
         print("---")
         r_file.close()
         print(f"File '{file_name}' closed.")
-        print("Transform data:")
-        print("---")
-        print(contents)
-        print("---")
-        new_file = input("Enter new file name (or empty):")
-        if not new_file:
-            raise None_value("Not saving data.")
-        print(f"Saving data to '{new_file}'")
-        print(f"Data saved in file '{new_file}'.")
+        return contents
     except FileNotFoundError as e:
         print(f"Error opening file '{file_name}': {e}")
     except PermissionError as e:
         print(f"Error opening file '{file_name}': {e}")
     except IsADirectoryError as e:
         print(f"Error opening file '{file_name}': {e}")
+
+
+def save_file(contents: str) -> None:
+    try:
+        print("Transform data:")
+        print("---")
+        print()
+        print(contents)
+        print()
+        print("---")
+        new_file = input("Enter new file name (or empty):")
+        if not new_file:
+            raise None_value("Not saving data.")
+        print(f"Saving data to '{new_file}'")
+        r_newfile = open(new_file, 'w')
+        print(contents, file=r_newfile)
+        print(f"Data saved in file '{new_file}'.")
+    except FileNotFoundError as e:
+        print(f"Error opening file '{new_file}': {e}")
+    except PermissionError as e:
+        print(f"Error opening file '{new_file}': {e}")
+    except IsADirectoryError as e:
+        print(f"Error opening file '{new_file}': {e}")
     except None_value as e:
         print(e)
+
+
+def main() -> None:
+    print("=== Cyber Archives Recovery & Preservation ===")
+    contents = cat_file()
+    print()
+    save_file(contents)
 
 
 if __name__ == "__main__":
