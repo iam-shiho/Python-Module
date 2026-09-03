@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-def secure_archive(file_name: str, perform: str, contains: str = None) -> tuple[bool, str]:
+def secure_archive(
+                   file_name: str,
+                   perform: str,
+                   contains: str = ""
+                   ) -> tuple[bool, str]:
     if perform == "read":
         try:
             with open(file_name, 'r') as o_file:
@@ -16,6 +20,9 @@ def secure_archive(file_name: str, perform: str, contains: str = None) -> tuple[
             return (True, "Content successfully written to file")
         except Exception as e:
             return (False, str(e))
+    return (False, "No valid item provided. Usage: "
+            "secure_archive(file_name, <read or write>)")
+
 
 def main() -> None:
     print("=== Cyber Archives Security ===")
@@ -30,8 +37,12 @@ def main() -> None:
     print(secure_archive("test.txt", "read"))
     print()
     print("Using 'secure_archive' to write previous content to a new file:")
-    print(secure_archive("new.txt", "write", "[FRAGMENT 001] Digital preservation protocols established 2087\n[FRAGMENT 002] Knowledge must"
-                   "survive the entropy wars\n[FRAGMENT 003] Every byte saved is a victory against oblivion\n"))
+    print(secure_archive(
+        "new.txt", "write",
+        "[FRAGMENT 001] Digital preservation protocols established 2087\n"
+        "[FRAGMENT 002] Knowledge must survive the entropy wars\n"
+        "[FRAGMENT 003] Every byte saved is a victory against oblivion\n")
+    )
 
 
 if __name__ == "__main__":

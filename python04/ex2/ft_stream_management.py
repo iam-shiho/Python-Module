@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-import typing
+
 
 class None_value(Exception):
     pass
@@ -22,11 +22,15 @@ def cat_file() -> str:
         print(f"File '{file_name}' closed.")
         return contents
     except FileNotFoundError as e:
-        print(f"[STDERR] Error opening file '{file_name}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{file_name}': {e}",
+              file=sys.stderr)
     except PermissionError as e:
-        print(f"[STDERR] Error opening file '{file_name}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{file_name}': {e}",
+              file=sys.stderr)
     except IsADirectoryError as e:
-        print(f"[STDERR] Error opening file '{file_name}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{file_name}': {e}",
+              file=sys.stderr)
+    return ""
 
 
 def save_file(contents: str) -> None:
@@ -47,11 +51,14 @@ def save_file(contents: str) -> None:
         print(contents, file=r_newfile)
         print(f"Data saved in file '{new_file}'.")
     except FileNotFoundError as e:
-        print(f"[STDERR] Error opening file '{new_file}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{new_file}': {e}",
+              file=sys.stderr)
     except PermissionError as e:
-        print(f"[STDERR] Error opening file '{new_file}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{new_file}': {e}",
+              file=sys.stderr)
     except IsADirectoryError as e:
-        print(f"[STDERR] Error opening file '{new_file}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{new_file}': {e}",
+              file=sys.stderr)
     except None_value as e:
         print(f"[STDERR] {e}", file=sys.stderr)
 

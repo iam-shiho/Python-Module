@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 
 import sys
-import typing
 
 
-def read_file(file_name: str) -> typing.IO:
-    return open(file_name, 'r')
+class None_value(Exception):
+    pass
 
 
 def cat_file() -> None:
@@ -14,7 +13,7 @@ def cat_file() -> None:
     file_name = sys.argv[1]
     try:
         print(f"Accessing file '{file_name}'")
-        r_file = read_file(file_name)
+        r_file = open(file_name, 'r')
         contents = r_file.read()
         print("---")
         print()

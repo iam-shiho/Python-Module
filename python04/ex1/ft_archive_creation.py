@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
 
 import sys
-import typing
 
 
 class None_value(Exception):
     pass
 
 
-def read_file(file_name: str) -> typing.IO:
-    return open(file_name, 'r')
-
-
-def cat_file() -> typing.IO:
+def cat_file() -> str:
     if len(sys.argv) < 2:
         raise None_value("Usage: ft_ancient_text.py <file>")
     file_name = sys.argv[1]
     try:
         print(f"Accessing file '{file_name}'")
-        r_file = read_file(file_name)
+        r_file = open(file_name, 'r')
         contents = r_file.read()
         print("---")
         print()
@@ -34,6 +29,7 @@ def cat_file() -> typing.IO:
         print(f"Error opening file '{file_name}': {e}")
     except IsADirectoryError as e:
         print(f"Error opening file '{file_name}': {e}")
+    return ""
 
 
 def save_file(contents: str) -> None:
