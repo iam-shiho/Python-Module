@@ -28,6 +28,7 @@ def main() -> None:
     print(f"New list of capitalized names only: {capitalized}")
     add_score = {player: random.randint(0, 1000) for player in PLAYERS}
     print(f"Score dict: {add_score}")
+
     average = round(sum(add_score.values()) / len(add_score), 2)
     print(f"Score average is {average}")
     high_scores = {
@@ -35,7 +36,7 @@ def main() -> None:
                    score in add_score.items() if score > average
                    }
     print(f"High scores: {high_scores}")
-
+#リストでプレイヤーの名前だけ羅列させて、それを元にplayer[name]で値をとって比べるのがいいのでは？
 
 if __name__ == '__main__':
     try:

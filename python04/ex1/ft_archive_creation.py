@@ -2,7 +2,6 @@
 
 import sys
 
-
 class None_value(Exception):
     pass
 

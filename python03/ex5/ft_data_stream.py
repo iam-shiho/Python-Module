@@ -33,7 +33,7 @@ def main() -> None:
     print(f"Built list of 10 events: {ten_events}")
     rem_event = consume_event(ten_events)
     for event_pair in rem_event:
-        print(f"Got event from list: {event}")
+        print(f"Got event from list: {event_pair}")
         print(f"Remains in list: {ten_events}")
 
 

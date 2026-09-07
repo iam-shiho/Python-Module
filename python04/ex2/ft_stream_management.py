@@ -2,7 +2,6 @@
 
 import sys
 
-
 class None_value(Exception):
     pass
 
@@ -66,8 +65,11 @@ def save_file(contents: str) -> None:
 def main() -> None:
     print("=== Cyber Archives Recovery & Preservation ===")
     contents = cat_file()
+    if not contents:
+        return
     print()
     save_file(contents)
+
 
 
 if __name__ == "__main__":
