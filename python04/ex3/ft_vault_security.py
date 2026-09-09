@@ -25,28 +25,26 @@ def secure_archive(
             "secure_archive(file_name, <read or write>)")
 
 
-# def main() -> None:
-#     print("=== Cyber Archives Security ===")
-#     print()
-#     print("Using 'secure_archive' to read from a nonexistent file:")
-#     print(secure_archive("/not/existing/file", "read"))
-#     print()
-#     print("Using 'secure_archive' to read from an inaccessible file:")
-#     print(secure_archive("/etc/master.passwd", "read"))
-#     print()
-#     print("Using 'secure_archive' to read from a regular file:")
-#     print(secure_archive("test.txt", "read"))
-#     print()
-#     print("Using 'secure_archive' to write previous content to a new file:")
-#     print(secure_archive(
-#         "new.txt", "write",
-#         "[FRAGMENT 001] Digital preservation protocols established 2087\n"
-#         "[FRAGMENT 002] Knowledge must survive the entropy wars\n"
-#         "[FRAGMENT 003] Every byte saved is a victory against oblivion\n")
-#     )
+def main() -> None:
+    print("=== Cyber Archives Security ===")
+    print()
+    print("Using 'secure_archive' to read from a nonexistent file:")
+    print(secure_archive("/not/existing/file", "read"))
+    print()
+    print("Using 'secure_archive' to read from an inaccessible file:")
+    print(secure_archive("/etc/master.passwd", "read"))
+    print()
+    print("Using 'secure_archive' to read from a regular file:")
+    print(secure_archive("test.txt", "read"))
+    print()
+    print("Using 'secure_archive' to write previous content to a new file:")
+    print(secure_archive(
+        "new.txt", "write",
+        "[FRAGMENT 001] Digital preservation protocols established 2087\n"
+        "[FRAGMENT 002] Knowledge must survive the entropy wars\n"
+        "[FRAGMENT 003] Every byte saved is a victory against oblivion\n")
+    )
 
-def main():
-    print(secure_archive("test.txt", "write", "aaa"))
 
 if __name__ == "__main__":
     try:

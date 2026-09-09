@@ -2,6 +2,7 @@
 
 import sys
 
+
 class None_value(Exception):
     pass
 
@@ -19,7 +20,6 @@ def cat_file() -> None:
         print(contents)
         print()
         print("---")
-        r_file.close()
         print(f"File '{file_name}' closed.")
     except FileNotFoundError as e:
         print(f"Error opening file '{file_name}': {e}")
@@ -27,7 +27,9 @@ def cat_file() -> None:
         print(f"Error opening file '{file_name}': {e}")
     except IsADirectoryError as e:
         print(f"Error opening file '{file_name}': {e}")
-
+    finally:
+        r_file.close()
+        
 
 def main() -> None:
     print("=== Cyber Archives Recovery ===")

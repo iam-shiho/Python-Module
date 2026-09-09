@@ -2,6 +2,7 @@
 
 import sys
 
+
 class None_value(Exception):
     pass
 
@@ -17,8 +18,6 @@ def cat_file() -> str:
         print("---")
         print(contents)
         print("---")
-        r_file.close()
-        print(f"File '{file_name}' closed.")
         return contents
     except FileNotFoundError as e:
         print(f"[STDERR] Error opening file '{file_name}': {e}",
@@ -29,6 +28,9 @@ def cat_file() -> str:
     except IsADirectoryError as e:
         print(f"[STDERR] Error opening file '{file_name}': {e}",
               file=sys.stderr)
+    finally:
+        r_file.close()
+        print(f"File '{file_name}' closed.")
     return ""
 
 
@@ -60,6 +62,9 @@ def save_file(contents: str) -> None:
               file=sys.stderr)
     except None_value as e:
         print(f"[STDERR] {e}", file=sys.stderr)
+    finally:
+        r_newfile.close()
+
 
 
 def main() -> None:
@@ -69,7 +74,6 @@ def main() -> None:
         return
     print()
     save_file(contents)
-
 
 
 if __name__ == "__main__":
