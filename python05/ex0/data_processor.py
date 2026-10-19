@@ -17,9 +17,10 @@ class DataProcessor(ABC):
 
 
     #一番古いデータを削除するオーバーライドしなくていい
-    #辞書のみ別途で対応
     def output(self) -> typing.Any:
-        return self.log.pop(0)
+        old_data: typing.Any = self.log[0]
+        self.log.pop(0)
+        return old_data
 
 
 #リストでもらった値をintまたは、flote型でいれていく
@@ -102,70 +103,51 @@ class LogProcessor(DataProcessor):
 
 def main() -> None:
     try:
-        print("=== Code Nexus - Data Processor ===")
-        print()
+        print("=== Code Nexus - Data Processor ===\n")
         print("Testing Numeric Processor...")
         num = NumericProcessor()
-        print(num.validate(42))
-        print(num.validate("aa"))
-        print(num.validate([42,2,1,5,6,7,4]))
-        print(num.validate([42,2,1,5,"q",7,4]))
-        num.ingest([42,2,1,5,6,7,4])
-        print(num.log)
-        print(num.output())
-        print(num.log)
+        print(f" Trying to validate input '42': {num.validate(42)}")
+        print(f" Trying to validate input 'Hello': {num.validate('Hello')}")
+        print(" Test invalid ingestion of string 'foo' without prior validation:")
+        try:
+            num.ingest('foo')
+        except ValueError as e:
+            print(f" Got exception: {e}")
+        print(f" Processing data: [1, 2, 3, 4, 5]")
+        num.ingest([1, 2, 3, 4, 5])
+        print(" Extracting 3 values...")
+        for i in range(3):
+            value = num.output()
+            print(f" Numeric value {i}: {value}")
 
-        print()
-        num = TextProcessor()
-        print(num.validate(42))
-        print(num.validate("aa"))
-        print(num.validate(["aaa","www","aaa",12]))
-        print(num.validate(["q","a","as"]))
-        num.ingest(["q","a","as"])
-        print(num.log)
-        print(num.output())
-        print(num.log)
+        print("\nTesting Text Processor...")
+        text = TextProcessor()
+        print(f" Trying to validate input '42': {text.validate(42)}")
+        print(f" Processing data: ['Hello', 'Nexus', 'World']")
+        text.ingest(['Hello', 'Nexus', 'World'])
+        print(" Extracting 1 values...")
+        for i in range(1):
+            value = text.output()
+            print(f" Text value {i}: {value}")
 
-
-        print()
-        num = LogProcessor()
-        print(num.validate(42))
-        print(num.validate({"a":"a"}))
-        print(num.validate([{'log_level': 'NOTICE'}, {'log_message': 'Connection to server'}, {'log_level': 'ERROR'}, {'log_message': 'Unauthorized access!!'}]))
-        print(num.validate([{'log_level': 'NOTICE', 'log_message': 'Connection to server'}]))
-        num.ingest({'log_level': 'NOTICE', 'log_message': 'Connection to server'})
-        print(num.log)
-        print(num.output())
-        print(num.log)
+        print("\nTesting Log Processor...")
+        log = LogProcessor()
+        print(f" Trying to validate input 'Hello': {log.validate('Hello')}")
+        print(
+            " Processing data: [{'log_level': 'NOTICE', 'log_message': 'Connection to server'}, "
+             "{'log_level': 'ERROR', 'log_message': 'Unauthorized access!!'}]"
+        )
+        log.ingest(
+             [{'log_level': 'NOTICE', 'log_message': 'Connection to server'},\
+              {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!'}]
+        )
+        print(" Extracting 2 values...")
+        for i in range(2):
+            logs = log.output()
+            key1, key2 = logs
+            print(f" Log entry {i}: {logs[key1]}: {logs[key2]}")
     except Exception as e:
         print(f"Error: {e}")
 
-    # #validateでデータの検証
-    # #validateでデータの検証
-    # print("Test invalid ingestion of string 'foo' without prior validation:")
-    # #エラー出力
-    # print("Processing data: [1, 2, 3, 4, 5]")
-    # #ingestで値を代入
-    # print("Extracting 3 values...")
-    # #output
-    # #output
-    # #output
-    # print()
-
-    # print("Testing Text Processor...")
-    # #validateでデータの検証
-    # print("Processing data: ['Hello', 'Nexus', 'World']")
-    # #ingestで値を代入
-    # print("Extracting 1 value...")
-    # #output
-    # print()
-
-    # print("Testing Log Processor...")
-    # #validateでデータの検証
-    # print("Processing data: [{'log_level': 'NOTICE', 'log_message': 'Connection to server'}, {'log_level': 'ERROR', 'log_message': 'Unauthorized access!!'}]")
-    # #ingestで値を代入
-    # print("Extracting 2 values...")
-    # #output
-    # #output
-
-main()
+if __name__ == "__main__":
+    main()

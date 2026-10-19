@@ -3,24 +3,19 @@
 import sys
 
 
-class None_value(Exception):
-    pass
-
-
 def cat_file() -> None:
     if len(sys.argv) < 2:
         raise None_value("Usage: ft_ancient_text.py <file>")
     file_name = sys.argv[1]
+    is_opend: bool = False
     try:
         print(f"Accessing file '{file_name}'")
         r_file = open(file_name, 'r')
+        is_opend = True
         contents = r_file.read()
-        print("---")
-        print()
-        print(contents)
-        print()
-        print("---")
-        print(f"File '{file_name}' closed.")
+        print("---\n")
+        print(contents, end="")
+        print("\n---")
     except FileNotFoundError as e:
         print(f"Error opening file '{file_name}': {e}")
     except PermissionError as e:
@@ -28,8 +23,10 @@ def cat_file() -> None:
     except IsADirectoryError as e:
         print(f"Error opening file '{file_name}': {e}")
     finally:
-        r_file.close()
-        
+        if is_opend:
+            r_file.close()
+        print(f"File '{file_name}' closed.")
+
 
 def main() -> None:
     print("=== Cyber Archives Recovery ===")
