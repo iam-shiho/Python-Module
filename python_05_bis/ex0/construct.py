@@ -1,6 +1,7 @@
 import sys
 import os
 
+
 def main() -> None:
     if sys.prefix != sys.base_prefix:
         print(
@@ -26,12 +27,14 @@ def main() -> None:
             "\nTo seal the laboratory, run:"
             "\npython3 -m venv lab_env"
             "\nsource lab_env/bin/activate # On Unix"
-            "\nlab_env\Scripts\\activate # On Windows\n"
+            "\nlab_env\\Scripts\\activate # On Windows\n"
             "\nThen run this program again."
         )
+
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"{e}", file=sys.stderr)
+        sys.exit(1)

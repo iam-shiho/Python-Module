@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import sys
 
 
-def main():
+def main() -> None:
     print(
         "\nORACLE STATUS: Consulting the configuration...\n"
     )
@@ -11,7 +11,7 @@ def main():
     mode = os.getenv('MATRIX_MODE')
     if mode == "development":
         print(f"Mode: {mode}")
-        if not os.getenv('DATABASE_URL') == None:
+        if os.getenv('DATABASE_URL'):
             print("Database: Connected to local instance")
         else:
             print("Database: Disconnected from local instance")
@@ -31,7 +31,6 @@ def main():
             "[OK] Production overrides available\n"
             "\nThe Oracle sees all configurations."
         )
-
 
     elif mode == "production":
         print(
