@@ -9,13 +9,9 @@ def main() -> None:
         "Now show that not all functions can be reached\n"
         "This will raise an exception!\n"
     )
-    print(
-        f"Testing the hidden create_earth: {alchemy.create_earth()}"
-    )
+    print("Testing the hidden create_earth:", end="")
+    print({alchemy.create_earth()})
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as e:
-        print(f"Error: {e}")
+    main()

@@ -11,19 +11,27 @@ def main() -> None:
     mode = os.getenv('MATRIX_MODE')
     if mode == "development":
         print(f"Mode: {mode}")
+
         if os.getenv('DATABASE_URL'):
             print("Database: Connected to local instance")
         else:
             print("Database: Disconnected from local instance")
+
         if os.getenv('API_KEY'):
             print("API Access: Authenticated")
         else:
             print("API Access: Unauthenticated")
-        print(f"Log Level: {os.getenv('LOG_LEVEL')}")
+
+        if os.getenv('Log Level'):
+            print(f"Log Level: {os.getenv('LOG_LEVEL')}")
+        else:
+            print("Log Level: INFO")
+
         if os.getenv('ZION_ENDPOINT'):
             print("Remote Network: Online")
         else:
             print("Remote Network: Offline")
+
         print(
             "\nConfiguration security check:\n"
             "[OK] No hardcoded secrets detected\n"

@@ -1,4 +1,4 @@
-from alchemy.potions import strength_potion, healing_potion
+from alchemy import strength_potion, healing_potion
 
 
 def main() -> None:
