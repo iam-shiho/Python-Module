@@ -19,8 +19,7 @@ class DataProcessor(ABC):
 
     #一番古いデータを削除するオーバーライドしなくていい
     def output(self) -> tuple[int, str]:
-        old_data: list = self.log[0]
-        self.log.pop(0)
+        old_data: list = self.log.pop(0)
         return (old_data[0], old_data[1])
 
 
@@ -76,12 +75,12 @@ class TextProcessor(DataProcessor):
             raise ValueError("Improper numeric data")
         if isinstance(data, str):
             c = self._logcount
-            self.log.append([c, str(data)])
+            self.log.append([c, data])
             self._logcount += 1
         else:
             for d in data:
                 c = self._logcount
-                self.log.append([c, str(d)])
+                self.log.append([c, d])
                 self._logcount += 1
 
 
@@ -89,14 +88,20 @@ class TextProcessor(DataProcessor):
 class LogProcessor(DataProcessor):
     def validate(self, data: typing.Any) -> bool:
         if isinstance(data, (dict, list)):
-            if isinstance(data[key], data dict):
-                return True
+            if isinstance(data, dict):
+                if all(
+                    isinstance(k, str) and isinstance(v, str) for k, v in data.items()
+                ):
+                    return True
             else:
                 for d in data:
                     if isinstance(d, dict):
-                        continue
-                    return False
+                        if not all(
+                            isinstance(k, str) and isinstance(v, str) for k, v in d.items()
+                            ):
+                            return False
                 return True
+
         return False
 
 
@@ -105,12 +110,12 @@ class LogProcessor(DataProcessor):
             raise ValueError("Improper numeric data")
         if isinstance(data, dict):
             c = self._logcount
-            self.log.append([c, str(data)])
+            self.log.append([c, ': '.join(data.values())])
             self._logcount += 1
         else:
             for d in data:
                 c = self._logcount
-                self.log.append([c, str(d)])
+                self.log.append([c, ': '.join(d.values())])
                 self._logcount += 1
 
 
