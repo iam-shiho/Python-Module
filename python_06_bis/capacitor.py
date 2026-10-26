@@ -1,4 +1,5 @@
-from ex3 import TransformCreatureFactory, TransformCapability, Creature, CreatureFactory
+from ex3 import TransformCreatureFactory
+
 
 def testing_transform() -> None:
     transform = TransformCreatureFactory()
@@ -10,7 +11,7 @@ def testing_transform() -> None:
         " base:",
         base.describe(),
         base.attack(),
-        base.transform,
+        base.transform(),
         base.attack(),
         base.revert(),
         sep="\n"
@@ -20,11 +21,12 @@ def testing_transform() -> None:
         " evolved:",
         evolved.describe(),
         evolved.attack(),
-        evolved.transform,
+        evolved.transform(),
         evolved.attack(),
         evolved.revert(),
         sep="\n"
     )
+
 
 if __name__ == "__main__":
     testing_transform()

@@ -1,9 +1,8 @@
 from ex3 import CreatureFactory, FlameFactory, TransformCreatureFactory
 
 
-# 何タイプなのか、攻撃、しんかしたときのタイプ、攻撃
-def testing_factory(factory :CreatureFactory) -> None:
-    base =  factory.create_base()
+def testing_factory(factory: CreatureFactory) -> None:
+    base = factory.create_base()
     evolved = factory.create_evolved()
 
     print(
@@ -16,11 +15,12 @@ def testing_factory(factory :CreatureFactory) -> None:
     )
 
 
-def testing_battle(factory_1 :CreatureFactory, factory_2 :CreatureFactory) -> None:
-    base_1 =  factory_1.create_base()
-    evolved_1 = factory_1.create_evolved()
-    base_2 =  factory_2.create_base()
-    evolved_2 = factory_2.create_evolved()
+def testing_battle(
+    factory_1: CreatureFactory,
+    factory_2: CreatureFactory
+) -> None:
+    base_1 = factory_1.create_base()
+    base_2 = factory_2.create_base()
 
     print(
         "Testing battle",
@@ -32,6 +32,7 @@ def testing_battle(factory_1 :CreatureFactory, factory_2 :CreatureFactory) -> No
         base_2.attack(),
         sep="\n"
     )
+
 
 def main() -> None:
     flame = FlameFactory()
