@@ -34,6 +34,6 @@ class AggressiveStrategy(BattleStrategy):
         if not self.is_valid(creature):
             raise ValueError(
                 "Battle error, aborting tournament: "
-                f"Invalid Creature '{creature}' for this aggressive strategy"
+                f"Invalid Creature '{creature.__class__.__name__}' for this aggressive strategy"
             )
         return [creature.transform(), creature.attack(), creature.revert()]
