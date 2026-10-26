@@ -22,7 +22,6 @@ class JSONPlugin:
 
 
 class DataStream():
-
     def __init__(self) -> None:
         self.processers: list[DataProcessor] = []
 
