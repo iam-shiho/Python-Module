@@ -5,7 +5,20 @@ from data_processor\
 
 class ExportPlugin(typing.Protocol):
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        pass
+        ...
+
+
+class CSVPlugin:
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        print("CSV Output:")
+        print(",".join(value for i, value in data))
+
+
+class JSONPlugin:
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        res = ", ".join(f'"item_{i}": "{value}"' for i, value in data)
+        print("JSON Output:")
+        print("{" f"{res}" "}")
 
 
 class DataStream():
@@ -43,7 +56,13 @@ class DataStream():
             )
 
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
-        pass
+        for processor in self.processers:
+            data: list[tuple[int, str]] = []
+            for i in range(nb):
+                if not processor.log:
+                    break
+                data.append(processor.output())
+            plugin.process_output(data)
 
 
 def main() -> None:
@@ -74,6 +93,40 @@ def main() -> None:
             {'log_level': 'INFO', 'log_message': 'User wil is connected'}],
         42, ['Hi', 'five']
     ])
+    print("\n== DataStream statistics ==")
+    stream.print_processors_stats()
+
+    print(
+        "\nSend 3 processed data from each processor to a CSV plugin:"
+    )
+    stream.output_pipeline(3, CSVPlugin())
+
+    print("\n== DataStream statistics ==")
+    stream.print_processors_stats()
+
+    print(
+        "Send another batch of data: "
+        "[21, ['I love AI', 'LLMs are wonderful', 'Stay healthy'], "
+        "[{'log_level': 'ERROR', 'log_message': '500 server crash'}, "
+        "{'log_level': 'NOTICE', "
+        "'log_message': 'Certificate expires in 10 days'}], "
+        "[32, 42, 64, 84, 128, 168], 'World hello']"
+    )
+
+    stream.process_stream([
+        21, ['I love AI', 'LLMs are wonderful', 'Stay healthy'],
+        [{'log_level': 'ERROR', 'log_message': '500 server crash'},
+         {'log_level': 'NOTICE',
+         'log_message': 'Certificate expires in 10 days'}],
+        [32, 42, 64, 84, 128, 168], 'World hello']
+    )
+
+    print("\n== DataStream statistics ==")
+    stream.print_processors_stats()
+
+    print("\nSend 5 processed data from each processor to a JSON plugin:")
+    stream.output_pipeline(5, JSONPlugin())
+
     print("\n== DataStream statistics ==")
     stream.print_processors_stats()
 
