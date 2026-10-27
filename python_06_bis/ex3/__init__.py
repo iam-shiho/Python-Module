@@ -1,6 +1,6 @@
-from .creature import Creature
-from .transform import TransformCapability
-from .factory import CreatureFactory, FlameFactory, TransformCreatureFactory
+from ex3.creature import Creature
+from ex3.transform import TransformCapability
+from ex3.factory import CreatureFactory, FlameFactory, TransformCreatureFactory
 
 
 __all__ = [

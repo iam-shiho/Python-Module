@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .creature import Creature
+from ex3.creature import Creature
 
 
 class TransformCapability(ABC):
