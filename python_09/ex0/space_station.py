@@ -26,7 +26,18 @@ def main() -> None:
             oxygen_level = 92.3,
             is_operational = True
         )
-        print()
+        print(
+            "Valid station created:"
+            f"ID: {valid.station_id}"
+            f"Name: {valid.name}"
+            f"Crew: {valid.crew_size} people"
+            f"Power: {valid.power_level}%"
+            f"Oxygen: {valid.oxygen_level}%"
+            if valid.is_operational:
+                print("Status: Operational")
+            else:
+                print("Status: Non-operational")
+        )
     except ValueError as e:
         print(e)
 
@@ -43,7 +54,18 @@ def main() -> None:
             oxygen_level = 92.3,
             is_operational = True
         )
-        print()
+        print(
+            "Valid station created:"
+            f"ID: {valid.station_id}"
+            f"Name: {valid.name}"
+            f"Crew: {valid.crew_size} people"
+            f"Power: {valid.power_level}%"
+            f"Oxygen: {valid.oxygen_level}%"
+            if valid.is_operational:
+                print("Status: Operational")
+            else:
+                print("Status: Non-operational")
+        )
     except ValueError as e:
         print(e)
 
