@@ -28,6 +28,8 @@ def main() -> None:
             last_maintenance=datetime.now(),
             is_operational=True
         )
+        # last_maintenanceはUNIX時間やYYYY-MM-DDの形でも記入可能
+        # UNIX時間は1970/01/01 00:00 ~　秒数で計算される
         print(
             "Valid station created:\n"
             f"ID: {valid.station_id}\n"
@@ -43,6 +45,8 @@ def main() -> None:
     except ValidationError as e:
         for err in e.errors():
             print(err["msg"])
+    # エラーの一覧を返す
+    # type:エラーの種類 loc:エラーが発生した場所 msg:人間が理解できるメッセージ imput:検証のために入力された値
 
     print(
         "========================================\n"

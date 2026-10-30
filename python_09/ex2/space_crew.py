@@ -28,7 +28,7 @@ class SpaceMission(BaseModel):
     destination: str = Field(..., min_length=3, max_length=50)
     launch_date: datetime
     duration_days: int = Field(..., ge=1, le=3650)
-    crew: list[CrewMember]
+    crew: list[CrewMember] = Field(..., min_length=1, max_length=12)
     mission_status: str = Field(default="planned")
     budget_millions: float = Field(..., ge=1.0, le=10000.0)
 
@@ -86,7 +86,7 @@ def demonstration() -> None:
                  rank=CrewRanks.COMMANDER,
                  age=70,
                  specialization="Mission Command",
-                 years_experience=6,
+                 years_experience=6
                 ),
                 CrewMember(
                  member_id="john",
@@ -94,7 +94,7 @@ def demonstration() -> None:
                  rank=CrewRanks.LIEUTENANT,
                  age=70,
                  specialization="Navigation",
-                 years_experience=6,
+                 years_experience=6
                 ),
                 CrewMember(
                  member_id="alice",
@@ -102,7 +102,7 @@ def demonstration() -> None:
                  rank=CrewRanks.OFFICER,
                  age=70,
                  specialization="Engineering",
-                 years_experience=6,
+                 years_experience=6
                 )
             ],
             budget_millions=2500.0
@@ -129,7 +129,7 @@ def demonstration() -> None:
             print(err["msg"])
 
     print(
-        "=========================================\n"
+        "\n=========================================\n"
         "Expected validation error:"
     )
     try:
